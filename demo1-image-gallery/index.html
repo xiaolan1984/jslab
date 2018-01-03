@@ -9,26 +9,44 @@
 </head>
 <body>
 	<h1>最新游戏</h1>
-	<ul>
+	<ul id="list">
 		<li>
-			<a href="http://cdn.tgp.qq.com/tgp/oss-images/oss_5a3ccb7228ac0.jpg" title="砸蛋狂欢——砸出Q币，砸出免单">砸蛋狂欢——砸出Q币，砸出免单</a>
+			<a href="http://cdn.tgp.qq.com/tgp/oss-images/oss_5a3ccb7228ac0.jpg" onclick="return false;" title="砸蛋狂欢——砸出Q币，砸出免单">砸蛋狂欢——砸出Q币，砸出免单</a>
 		</li>
 		<li>
-			<a href="http://cdn.tgp.qq.com/tgp/oss-images/oss_5a4338b4e163e.jpg" title="火源——RPG科幻射击大作">火源——RPG科幻射击大作</a>
+			<a href="http://cdn.tgp.qq.com/tgp/oss-images/oss_5a4338b4e163e.jpg" onclick="return false;" title="火源——RPG科幻射击大作">火源——RPG科幻射击大作</a>
 		</li>
 		<li>
-			<a href="http://cdn.tgp.qq.com/tgp/oss-images/oss_5a4470e0f0b7e.jpg" title="天使帝国4">天使帝国4</a>
+			<a href="http://cdn.tgp.qq.com/tgp/oss-images/oss_5a4470e0f0b7e.jpg" onclick="return false;" title="天使帝国4">天使帝国4</a>
 		</li>
 		<li>
-			<a href="http://cdn.tgp.qq.com/tgp/oss-images/oss_5a44e645e0e4f.jpg" title="汐——欲罢不能的古风动作游戏">汐——欲罢不能的古风动作游戏</a>
+			<a href="http://cdn.tgp.qq.com/tgp/oss-images/oss_5a44e645e0e4f.jpg" onclick="return false;" title="汐——欲罢不能的古风动作游戏">汐——欲罢不能的古风动作游戏</a>
 		</li>
 		<li>
-			<a href="http://cdn.tgp.qq.com/tgp/oss-images/oss_5a3ccb559cc01.jpg" title="流放之路——立即预约抢号">流放之路——立即预约抢号</a>
+			<a href="http://cdn.tgp.qq.com/tgp/oss-images/oss_5a3ccb559cc01.jpg" onclick="return false;" title="流放之路——立即预约抢号">流放之路——立即预约抢号</a>
 		</li>
 	</ul>
-	<p>
+	<p id="wrap">
 		<img src="http://cdn.tgp.qq.com/tgp/oss-images/oss_5a3ccb7228ac0.jpg">
 	</p>   
+	<script>
+		var _list = document.getElementById("list"),
+			_wrap = document.getElementById("wrap"),
+			_a = _list.getElementsByTagName("a");
 
+		// 事件代理
+		_list.addEventListener("click",function(e){
+			console.log(e.target);
+			console.log(e.target.nodeName);
+			if(e.target && e.target.nodeName.toUpperCase() == "A"){
+				var _self = e.target;
+				var _src = _self.getAttribute("href");
+				console.log(_src)
+				console.log(_wrap.getElementsByTagName("img")[0])
+				_wrap.getElementsByTagName("img")[0].setAttribute("src",_src);
+			}
+		})
+
+	</script>
 </body>
 </html>
