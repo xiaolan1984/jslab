@@ -30,5 +30,18 @@
 		<img src="http://cdn.tgp.qq.com/tgp/oss-images/oss_5a3ccb7228ac0.jpg">
 	</p>   
 
+	<script>
+		var i = 0;
+		var li = document.getElementsByTagName("li");
+		var a = document.getElementsByTagName("a");
+		var img = document.getElementsByTagName("img");	
+		for(i; i<li.length; i++){
+			a[i].onclick = function(e){
+				img[0].setAttribute("src", this.href);
+				e.preventDefault();
+			}		
+		}
+		
+	</script>
 </body>
 </html>
