@@ -1,1 +1,1 @@
-# jslab
+# javascript tutorial
