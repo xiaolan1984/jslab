@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Explaining the Document Object Model</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/typography.css" />
+</head>
+
+<body>
+  <h1>What is the Document Object Model?</h1>
+  <p>
+    The
+    <abbr title="World Wide Web Consortium">W3C</abbr> defines the
+    <abbr title="Document Object Model">DOM</abbr> as:
+  </p>
+  <blockquote cite="http://www.w3.org/DOM/">
+    <p>
+      A platform- and language-neutral interface that will allow programs and scripts to dynamically access and update the content, structure and style of documents.
+    </p>
+  </blockquote>
+  <p>
+    It is an
+    <abbr title="Application Programming Interface">API</abbr>
+    that can be used to navigate
+    <abbr title="HyperText Markup Language">
+      HTML</abbr> and
+    <abbr title="eXtensible Markup Language">XML
+    </abbr> documents.
+  </p>
+  <script type="text/javascript">
+  function displayAbbreviations() {
+    // 浏览器能力检测
+    if(!document.getElementsByTagName || !document.createElement || !document.createTextNode){
+      return false;
+    }
+
+    // 获取页面中所有的缩略语标签
+    var abbreviations=document.getElementsByTagName('abbr');
+    if(abbreviations.length<1){
+      return false;
+    }
+
+    // 将每个缩略语的信息保存为一个数组
+    var defs=new Array();
+    for(var i=0;i<abbreviations.length;i++){
+      var definition=abbreviations[i].getAttribute('title');
+      var key=abbreviations[i].lastChild.nodeValue;
+      defs[key]=definition;
+    }
+
+    // 创建dl列表
+    var dlist=document.createElement('dl');
+
+    // 遍历前面创建的数组，并创建dt、dd，然后加入到dl中
+    for(key in defs){
+      var definition=defs[key];
+      var dtitle=document.createElement('dt');
+      var dtitle_text=document.createTextNode(key);
+      dtitle.appendChild(dtitle_text);
+      var ddesc=document.createElement('dd');
+      var ddesc_text=document.createTextNode(definition);
+      ddesc.appendChild(ddesc_text);
+      dlist.appendChild(dtitle);
+      dlist.appendChild(ddesc);
+    }
+
+    // 创建<h2>Abbreviations</h2>
+    var header=document.createElement('h2');
+    var header_text=document.createTextNode("Abbreviations");
+    header.appendChild(header_text);
+
+    // 将h2和dl加入到body末尾
+    document.getElementsByTagName('body')[0].appendChild(header);
+    document.getElementsByTagName('body')[0].appendChild(dlist);
+
+  }
+
+  function addLoadEvent(func){
+    var oldonload=window.onload;
+    if(typeof window.onload != 'function'){
+      window.onload=func;
+    } else {
+      window.onload=function(){
+        oldonload();
+        func();
+      }
+    }
+  }
+
+  addLoadEvent(displayAbbreviations);
+  </script>
+</body>
+
+</html>
