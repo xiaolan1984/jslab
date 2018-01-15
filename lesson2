@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Explaining the Document Object Model</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/typography.css" />
+</head>
+
+<body>
+  <h1>What is the Document Object Model?</h1>
+  <p>
+    The
+    <abbr title="World Wide Web Consortium">W3C</abbr> defines the
+    <abbr title="Document Object Model">DOM</abbr> as:
+  </p>
+  <blockquote cite="http://www.w3.org/DOM/">
+    <p>
+      A platform- and language-neutral interface that will allow programs and scripts to dynamically access and update the content, structure and style of documents.
+    </p>
+  </blockquote>
+  <p>
+    It is an
+    <abbr title="Application Programming Interface">API</abbr>
+    that can be used to navigate
+    <abbr title="HyperText Markup Language">
+      HTML</abbr> and
+    <abbr title="eXtensible Markup Language">XML
+    </abbr> documents.
+  </p>
+
+  <script>
+    var i = 0;
+    var abbr = document.getElementsByTagName("abbr");    
+    function creatAbbr(){
+      var h3 = document.createElement("h3");
+      var h3Text = document.createTextNode("Abbreviations");
+      document.body.appendChild(h3);
+      h3.appendChild(h3Text);
+
+      for(i; i<abbr.length; i++){
+        var abbrText = abbr[i].firstChild.nodeValue;
+        var abbrTitle = abbr[i].getAttribute("title");
+        var h4 = document.createElement("h4");
+        var h4Text = document.createTextNode(abbrText);
+        var p = document.createElement("p");
+        var pText = document.createTextNode(abbrTitle);
+
+        document.body.appendChild(h4);
+        document.body.appendChild(p);
+
+        h4.appendChild(h4Text);
+        p.appendChild(pText);
+      };
+    };
+    creatAbbr();
+  </script>
+
+</body>
+</html>
