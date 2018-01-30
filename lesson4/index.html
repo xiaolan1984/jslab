@@ -28,18 +28,77 @@
     </div>
   
 <script>
-  var playBtn = document.getElementById("play");
   var video = document.getElementById("player-video");
-  if(video.paused){
-    playBtn.onclick = function(e){
+  var playBtn = document.getElementById("play");
+  var skipBtn = document.getElementById("skip");
+  var playFastBtn = document.getElementById("playFast");
+  var playSlowBtn = document.getElementById("playSlow");
+  var volUpBtn = document.getElementById("volUp");
+  var volDownBtn = document.getElementById("volDown");
+  var quiteBtn = document.getElementById("quite");
+
+
+
+  playBtn.onclick = function(e){
+    e.preventDefault();
+    if(video.paused){
       video.play();
       this.textContent = "暂停";
-    }
-  } else {
-    playBtn.onclick = function(e){
+    }else{
       video.pause();
       this.textContent = "播放";
+      video.playbackRate = 1;
     }
+  }
+
+  skipBtn.onclick = function(e){
+    e.preventDefault();
+    video.currentTime = 20;
+    video.play();
+    playBtn.textContent = "暂停";
+  }
+
+  playFastBtn.onclick = function(e){
+    e.preventDefault();
+    video.playbackRate = 2;
+    video.play();
+    playBtn.textContent = "暂停";
+  }
+
+  playSlowBtn.onclick = function(e){    
+      e.preventDefault();
+    video.currentTime--;
+  }
+
+  volUpBtn.onclick = function(e){
+    e.preventDefault();
+    video.muted=false;
+    if(video.volume >= 0 && video.volume <= 1){
+      video.volume += 0.1;
+    }else if(video.volume>1){
+      video.volume = 1;
+    }    
+  }
+
+  volDownBtn.onclick = function(e){ 
+    e.preventDefault();
+    if(video.volume > 0 && video.volume <= 1){
+      video.volume -= 0.1;
+    }else if(video.volume<0){
+      video.volume = 0;
+      video.muted=true;
+    }
+  }
+
+  quiteBtn.onclick = function(e){ 
+    e.preventDefault();
+    if(video.muted){
+      video.muted=false;
+      this.textContent = "禁音";
+    }else{
+      video.muted=true;
+      this.textContent = "取消禁音";
+    }  
   }
 </script>
 
