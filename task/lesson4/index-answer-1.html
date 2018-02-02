@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Explaining the Document Object Model</title>
+  <style type="text/css">
+  #player{position: absolute;left: 50%;top: 50%;-webkit-transform:translate(-50%,-50%);border:1px solid #000;background-color: #000}
+  #player-controls{text-align: center;}
+  #player-controls a{display: inline-block;margin: 0 10px;color: #fff;}
+  </style>
+</head>
+
+<body>
+    <div id="player">
+      <video id="player-video" controls>
+        <source src="http://html5video-player.com/data/images/happyfit2.mp4" type="video/mp4">
+        <!-- <source src="happyfit2.mp4" type="video/mp4"> -->
+
+      </video>
+      <p id="player-controls">
+        <a href="#" id="play">播放</a>
+        <a href="#" id="skip">跳到视频第20秒</a>
+        <a href="#" id="playFast">快进</a>
+        <a href="#" id="playSlow">快退</a>
+        <a href="#" id="volUp">增大音量</a>
+        <a href="#" id="volDown">减小音量</a>
+        <a href="#" id="quite">禁音</a>
+      </p>
+    </div>
+    <script type="text/javascript">
+      // 获取视频
+      var vid=document.getElementById('player-video');
+      // 获取视频控件容器
+      var playerControls=document.getElementById('player-controls');
+      // 监听视频控件
+      playerControls.addEventListener('click',function(e){
+        var target=e.target;
+        console.log(target.id);
+        switch (target.id){
+          case 'play':
+            videoPlay();
+            break;
+          case 'skip':
+            skip(20);
+            break;
+          case 'playFast':
+            videoSpeed(0.25);
+            break;
+          case 'playSlow':
+            videoSpeed(-0.25);
+            break;
+          case 'volUp':
+            setVol(0.1);
+            break;
+          case 'volDown':
+            setVol(-0.1);
+            break;
+          case 'quite':
+            videoQuite();
+            break;
+        }
+      },false);
+
+      // 获取播放按钮
+      var playBtn=document.getElementById('play');
+      // 监听视频状态
+      vid.addEventListener('play',function(){
+        playBtn.innerHTML='暂停';
+      },false);
+      vid.addEventListener('pause',function(){
+        playBtn.innerHTML='播放'
+      },false);
+      vid.addEventListener('ended',function(){
+        vid.currentTime=0;
+        playBtn.innerHTML='播放'
+      },false);
+
+
+      // 播放视频
+      function videoPlay(){
+        if(vid.paused){
+          vid.play();
+          // playBtn.innerHTML='暂停';
+        } else {
+          vid.pause();
+          // playBtn.innerHTML='播放'
+        }
+      }
+      
+      // 跳播
+      function skip(value){
+        vid.currentTime=value;
+      }
+
+      // 调整视频播放速率
+      function videoSpeed(value){
+        vid.playbackRate+=value;
+        if (vid.playbackRate<0.25) {
+          vid.playbackRate=0.25
+        }
+        if(vid.playbackRate>2.5){
+          vid.playbackRate=2.5
+        }
+      }
+
+      // 调整视频音量
+      function setVol(value){
+        var vidCurrentVol=vid.volume;
+        var vidTempVol=vidCurrentVol+value;
+        if(vidTempVol>=0 && vidTempVol<=1){
+          vid.volume=vidTempVol;
+        } else {
+          vid.volume=(vidTempVol<0)?0:1;
+        }
+      }
+
+      // 静音
+      function videoQuite(){
+        var quiteBtn=document.getElementById('quite');
+        if(vid.muted){
+          vid.muted=false;
+          quite.setAttribute('style','');
+        } else {
+          vid.muted=true;
+          quite.setAttribute('style','text-decoration:line-through;')
+        }
+      }
+
+
+    </script>
+
+
+</body>
+
+</html>

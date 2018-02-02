@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Explaining the Document Object Model</title>
+  <style type="text/css">
+  #player{position: absolute;left: 50%;top: 50%;-webkit-transform:translate(-50%,-50%);border:1px solid #000;background-color: #000}
+  #player-controls{text-align: center;}
+  #player-controls a{display: inline-block;margin: 0 10px;color: #fff;}
+  </style>
+</head>
+
+<body>
+    <div id="player">
+      <video id="player-video" controls>
+        <source src="http://html5video-player.com/data/images/happyfit2.mp4" type="video/mp4">
+      </video>
+      <p id="player-controls">
+        <a href="#" id="play">播放</a>
+        <a href="#" id="skip">跳到视频第20秒</a>
+        <a href="#" id="playFast">快进</a>
+        <a href="#" id="playSlow">快退</a>
+        <a href="#" id="volUp">增大音量</a>
+        <a href="#" id="volDown">减小音量</a>
+        <a href="#" id="quite">禁音</a>
+      </p>
+    </div>
+  
+
+
+</body>
+
+</html>

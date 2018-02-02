@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+	<div id="message">Whee!</div>
+	<script type="text/javascript">
+		// 页面加载完成的时候执行某个函数
+		function addLoadEvent(func){
+			var oldonload=window.onload;
+			if(typeof window.onload != 'function'){
+				window.onload=func;
+			} else {
+				window.onload=function(){
+					oldonload();
+					func();
+				}
+			}
+		}
+		//设置元素的位置
+		function positionMessage(){
+			// 浏览器DOM支持能力检测
+			if(!document.getElementById){
+				return false;
+			}
+			// 判断页面中是否存在需要的这个message元素
+			if(!document.getElementById('message')){
+				return false;
+			}
+			// 获取message元素并设置它的位置
+			var elem=document.getElementById('message');
+			elem.style.position='absolute';
+			elem.style.left='50px',
+			elem.style.top='100px';
+			// 500毫秒之后执行moveMessage函数移动元素
+			// movement=setTimeout("moveMessage()",500);
+			// 调用moveElement
+			moveElement('message',200,100,10);
+		}
+		//移动元素到需要的目标位置
+		function moveElement(elementID,final_x,final_y,interval){
+			// 浏览器DOM支持能力检测与元素是否存在一起判断
+			if (!document.getElementById || !document.getElementById(elementID)) {
+				return false;
+			}
+			// 获取元素并设置它的新位置
+			var elem=document.getElementById(elementID);
+			// 如果元素不存在left值，默认为0
+			if(!elem.style.left){
+				elem.style.left='0px';
+			}
+			// 如果元素不存在top值，默认为0
+			if(!elem.style.top){
+				elem.style.top='0px';
+			}
+			// elem.style.left='200px'
+			// 获取元素当前的left值，并转换为纯数字，以便进行数学计算
+			var xpos=parseInt(elem.style.left);
+			// 获取元素当前的top值，并转换为纯数字，以便进行数学计算
+			var ypos=parseInt(elem.style.top);
+			// 设置一个变量记录元素每次需要移动的距离
+			var dist=0;
+			// 将元素的当前left、top值与目标位置进行比较，如果刚好相等就不移动了，
+			// 如果距离目标元素还有一定距离就通过计算缩短一些这个距离
+			if(xpos==final_x && ypos==final_y){
+				return true;
+			}
+			if(xpos<final_x){
+				// xpos++;
+				dist=Math.ceil((final_x-xpos)/10);
+				xpos=xpos+dist;
+			}
+			if(xpos>final_x){
+				// xpos--;
+				dist=Math.ceil((xpos-final_x)/10);
+				xpos=xpos-dist;
+			}
+			if(ypos<final_y){
+				// ypos++
+				dist=Math.ceil((final_y-ypos)/10);
+				ypos=ypos+dist;
+			}
+			if(ypos>final_y){
+				// ypos--;
+				dist=Math.ceil((ypos-fina_y)/10);
+				ypos=ypos-dist;
+			}
+			// 设置元素经过移动的新位置
+			elem.style.left=xpos+'px';
+			elem.style.top=ypos+'px';
+			// 每隔10毫秒移动一次
+			// movement=setTimeout("moveMessage()",10);
+			var repeat="moveElement('"+elementID+"',"+final_x+","+final_y+","+interval+")";
+			movement=setTimeout(repeat,interval);
+		}
+
+
+
+
+		// 页面加载完成的时候先用positionMessage函数设置初始位置，然后用moveMessage移动到目标位置
+		addLoadEvent(positionMessage);
+		// addLoadEvent(moveMessage);
+	</script>
+    
+</body>
+</html>
