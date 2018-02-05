@@ -46,7 +46,7 @@
       slider.children[i].querySelector("a").index=i;
       slider.children[i].querySelector("a").onclick= function(e){
         e.preventDefault();  
-        img.style.left = "-" + (imgWrap.clientWidth * (this.index + 1)) + "px" ;
+        img.style.left = "-" + (imgWrap.clientWidth * this.index) + "px" ;
       }
     }
 
