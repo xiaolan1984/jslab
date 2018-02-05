@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>image gallery</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style>
+	*{ margin: 0; padding: 0;}
+	ul, li{ list-style: none;}
+	body{ padding: 40px;}
+	.tui-tab-tit{ display: -webkit-box; -webkit-box-align: center;}
+	.tui-tab-tit > li{ padding: 0 10px;}
+	.tui-tab-tit > li > a{ height:26px;line-height:25px;color:#333;text-decoration:none;}
+	.tui-tab-tit > li > a:hover{color:#000;}
+	.tui-tab-tit > .cur > a,
+	.tui-tab-tit > .cur > a:hover{ color:#4a84b5;}
+	.tui-tab-cont{ padding: 20px; display: none;}
+</style>
+</head>
+<body>
+	<div class="tui-tab-wrap">
+		<ul class="tui-tab-tit"><!-- 选项卡标题可以拆分到别的模块里单独使用 -->
+			<li class="cur"><a href="javascript:;">本周热门</a></li>
+			<li><a href="javascript:;">热销游戏</a></li>
+			<li><a href="javascript:;">折扣促销</a></li>
+		</ul>
+		<div class="tui-tab-cont" style="display:block;">
+			放选项卡内容1
+		</div>
+		<div class="tui-tab-cont">
+			放选项卡内容2
+		</div>
+		<div class="tui-tab-cont">
+			放选项卡内容3
+		</div>
+	</div>
+
+	<script>
+		var i = 0;
+		var tit = document.getElementsByClassName("tui-tab-tit")[0];
+		var li = tit.children;
+		var cont = document.getElementsByClassName("tui-tab-cont");
+
+		for(i; i<li.length; i++){			
+			li[i].querySelector("a").index =  i;
+			li[i].querySelector("a").onclick = function(e){
+				for(i=0; i<li.length; i++){					
+					tit.children[i].classList.remove("cur");
+					cont[i].style.display = "";
+				}
+
+				this.parentElement.classList.add("cur");
+				cont[this.index].style.display="block";
+			}		
+		}
+		
+	</script>
+</body>
+</html>
