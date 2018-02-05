@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Explaining the Document Object Model</title>
+  <style type="text/css">
+    #slideshow {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    #preview {
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Web Design</h1>
+  <p>These are the things you should know.</p>
+  <ol id="linklist">
+    <li>
+      <a href="structure.html">Structure</a>
+    </li>
+    <li>
+      <a href="presentation.html">Presentation</a>
+    </li>
+    <li>
+      <a href="behavior.html">Behavior</a>
+    </li>
+  </ol>
+  <div id="slideshow">
+    <img src="images/topics.gif" id="preview">
+  </div>
+
+  <script>
+    var i = 0;
+    var slider = document.getElementById("linklist");
+    var imgWrap = document.getElementById("slideshow");
+    var img = document.getElementById("preview");
+    var list = slider.children.length;
+
+
+    for(i; i<list; i++){
+      slider.children[i].querySelector("a").index=i;
+      slider.children[i].querySelector("a").onclick= function(e){
+        e.preventDefault();  
+        img.style.left = "-" + (imgWrap.clientWidth * (this.index + 1)) + "px" ;
+      }
+    }
+
+  </script>
+
+</body>
+
+</html>

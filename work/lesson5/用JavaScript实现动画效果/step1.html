@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+	<div id="message">Whee!</div>
+	<script type="text/javascript">
+		// 页面加载完成的时候执行某个函数
+		function addLoadEvent(func){
+			var oldonload=window.onload;
+			if(typeof window.onload != 'function'){
+				window.onload=func;
+			} else {
+				window.onload=function(){
+					oldonload();
+					func();
+				}
+			}
+		}
+		//设置元素的位置
+		function positionMessage(){
+			// 浏览器DOM支持能力检测
+			if(!document.getElementById){
+				return false;
+			}
+			// 判断页面中是否存在需要的这个message元素
+			if(!document.getElementById('message')){
+				return false;
+			}
+			// 获取message元素并设置它的位置
+			var elem=document.getElementById('message');
+			elem.style.position='absolute';
+			elem.style.left='50px',
+			elem.style.top='100px';
+		}
+		//移动元素到需要的目标位置
+		function moveMessage(){
+			// 浏览器DOM支持能力检测与message元素是否存在一起判断
+			if (!document.getElementById || !document.getElementById('message')) {
+				return false;
+			}
+			// 获取message元素并设置它的新位置
+			var elem=document.getElementById('message');
+			elem.style.left='200px'
+		}
+		// 页面加载完成的时候先用positionMessage函数设置初始位置，然后用moveMessage移动到目标位置
+		addLoadEvent(positionMessage);
+		addLoadEvent(moveMessage);
+	</script>
+    
+</body>
+</html>
