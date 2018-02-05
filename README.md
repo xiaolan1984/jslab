@@ -1,1 +1,1 @@
-# javascript tutorial
+目录地址：https://xiangshuo1992.github.io/jslab/view.html

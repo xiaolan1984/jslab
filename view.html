@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>JSLab 目录导航</title>
+
+	<style>
+		body {
+			background-color: #fff;
+			font: 12px/20px Verdana, Arial;
+			color: #333;
+			font-family: "微软雅黑";
+			padding: 0;
+			margin: 0;
+		}
+		a {
+			color: #3c9cff
+		}
+		a:hover {
+			color: #1a3fc4
+		}
+		.view-logo {
+			width: 30px;
+			height: 30px;
+			display: inline-block;
+			vertical-align: -5px;
+		}
+		.view-hd {
+			font-size: 30px;
+			color: #FFF;
+			background: #1a8bf3;
+			padding: 40px 20px;
+			position: relative;
+			font-weight: normal;
+		}
+		.view-bd {
+			background: #fff;
+			padding: 0;
+			margin: 0;
+			font-size: 0;
+		}
+		.view-bd > li {
+			width: 50%;
+			float: left;
+		}
+		.view-box {
+			margin-bottom: 40px;
+			clear: right;
+			padding-right: 20px;
+		}
+		.view-hd .author {
+			font-size: 14px;
+			color: rgba(255, 255, 255, 0.8);
+			line-height: 30px;
+			position: absolute;
+			right: 10px;
+			top: 15px;
+		}
+		.mod-div {
+			overflow: hidden;
+			_overflow: visible;
+			_height: 0;
+			padding: 0 20px 10px;
+		}
+		.mod-div h2 {
+			padding-left: 10px;
+			line-height: 36px;
+			clear: both;
+			font-size: 20px;
+			margin: 5px 0;
+			border-bottom: 1px dotted #bfc2c6;
+			color: #000000;
+			font-weight: normal;
+		}
+		.mod-div ul {
+			padding-left: 20px;
+			display: block;
+			clear: both;
+			padding-top: 5px;
+			overflow: hidden;
+			margin-bottom: 5px;
+		}
+		.mod-div li {
+			line-height: 30px;
+			float: left;
+			width: 300px;
+			font-size: 13px;
+			list-style: circle
+		}
+		.mod-div li a {
+			margin-left: 10px;
+		}
+		.mod-div li label {
+			min-width: 80px;
+			display: inline-block;
+		}
+		.contbox {
+			position: relative;
+			left: 0;
+			padding-bottom: 20px;
+		}
+		.nav {
+			width: 100%;
+			height: 50px;
+			border-bottom: 1px solid #cfcfcf;
+			margin-bottom: 25px;
+			background: #1a8bf3;
+		}
+		.nav ul {
+			height: 51px;
+			text-align: center;
+		}
+		.nav ul li:Hover {
+			color: #fff;
+			background: rgba(255, 255, 255, 0.3);
+		}
+		.nav ul li {
+			float: left;
+			list-style-type: none;
+			font-size: 16px;
+			color: rgba(255, 255, 255, 0.9);
+			background: rgba(255, 255, 255, 0.2);
+			height: 50px;
+			padding: 0 20px;
+			margin: 0 5px;
+			line-height: 50px;
+			cursor: pointer;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+			border: 1px solid transparent;
+		}
+		.nav ul li.cur {
+			color: #000;
+			background: #fff;
+			border: 1px solid #cfcfcf;
+			border-bottom-color: #fff
+		}
+		.hide {
+			display: none
+		}
+		.show {
+			display: block
+		}
+		.view-logo {
+			width: 30px;
+			height: 30px;
+			display: inline-block;
+			vertical-align: -5px;
+			background: url(http://10.123.5.151/rebuild/wegame/railgame/src/theme-v1/images/test/logo3.png) no-repeat;
+		}
+	</style>
+
+</head>
+<body>
+<div class="view-hd">
+	<div>
+		JS练习实践——大前端成长记
+	</div>
+	<span class="author">项目维护负责人：邓旭辉</span>
+</div>
+<div class="view-bd">
+	<!--导航栏 S-->
+	<nav class="nav">
+		<ul>
+			<li class="cur" title="我的实现">我的实现</li>
+			<li title="参考实现">参考实现</li>
+		</ul>
+	</nav>
+	<!--导航栏 E-->
+
+	<!--我的实现 S-->
+	<div class="contbox">
+		<div class="mod-div">
+			<h2>lesson1</h2>
+			<ul>
+				<li><label>点击链接切换对应的图片</label><a href="work/lesson1/index.html" target="_blank">index.html</a>
+				</li>
+			</ul>
+		</div>
+		<div class="mod-div">
+			<h2>lesson2</h2>
+			<ul>
+				<li><label>提取文档中的缩略语生成列表</label><a href="work/lesson2/index.html" target="_blank">index.html</a>
+				</li>
+			</ul>
+		</div>
+		<div class="mod-div">
+			<h2>lesson3</h2>
+			<ul>
+				<li><label>通过js操作style样式</label><a href="work/lesson3/index.html" target="_blank">index.html</a>
+				</li>
+			</ul>
+		</div>
+		<div class="mod-div">
+			<h2>lesson4</h2>
+			<ul>
+				<li><label>通过js控制视频播放</label><a href="work/lesson4/index.html" target="_blank">index.html</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--我的实现 E-->
+
+	<!--参考实现 S-->
+	<div class="contbox hide">
+		<div class="mod-div">
+			<h2>lesson1</h2>
+			<ul>
+				<li><label>实现1</label><a href="task/lesson1/index-answer-1.html" target="_blank">index-answer-1.html</a>
+				</li>
+				<li><label>实现2</label><a href="task/lesson1/index-answer-2.html" target="_blank">index-answer-2.html</a>
+				</li>
+				<li><label>实现3</label><a href="task/lesson1/index-answer-3.html" target="_blank">index-answer-3.html</a>
+				</li>
+				<li><label>实现4</label><a href="task/lesson1/index-answer-4.html" target="_blank">index-answer-4.html</a>
+				</li>
+				<li><label>实现5</label><a href="task/lesson1/index-answer-5.html" target="_blank">index-answer-5.html</a>
+				</li>
+				<li><label>实现6</label><a href="task/lesson1/index-answer-6.html" target="_blank">index-answer-6.html</a>
+				</li>
+				<li><label>实现7</label><a href="task/lesson1/index-answer-7.html" target="_blank">index-answer-7.html</a>
+				</li>
+				<li><label>实现8</label><a href="task/lesson1/index-answer-8.html" target="_blank">index-answer-8.html</a>
+				</li>
+			</ul>
+		</div>
+		<div class="mod-div">
+			<h2>lesson2</h2>
+			<ul>
+				<li><label>实现1</label><a href="task/lesson2/index-answer-1.html" target="_blank">index-answer-1.html</a>
+				</li>
+				<li><label>实现2</label><a href="task/lesson2/index-answer-2.html" target="_blank">index-answer-2.html</a>
+				</li>
+			</ul>
+		</div>
+		<div class="mod-div">
+			<h2>lesson3</h2>
+			<ul>
+				<li><label>实现1</label><a href="task/lesson3/index-answer-1.html" target="_blank">index-answer-1.html</a>
+				</li>
+				<li><label>实现2</label><a href="task/lesson3/index-answer-2.html" target="_blank">index-answer-2.html</a>
+				</li>
+				<li><label>实现3</label><a href="task/lesson3/index-answer-3.html" target="_blank">index-answer-3.html</a>
+				</li>
+			</ul>
+		</div>
+		<div class="mod-div">
+			<h2>lesson4</h2>
+			<ul>
+				<li><label>实现1</label><a href="task/lesson4/index-answer-1.html" target="_blank">index-answer-1.html</a>
+				</li>
+				<li><label>实现2</label><a href="task/lesson4/index-answer-2.html" target="_blank">index-answer-2.html</a>
+				</li>
+				<li><label>实现3</label><a href="task/lesson4/index-answer-3.html" target="_blank">index-answer-3.html</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--参考实现 E-->
+</div>
+
+
+</body>
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	/*控制导航栏JS*/
+	$(function(){
+		$(".view-bd .nav").on("click","li",function(){
+			var self = $(this);
+			self.siblings().removeClass("cur");
+			self.addClass("cur");
+			var index = self.index();
+			$(".view-bd .contbox").addClass("hide");
+			$(".view-bd .contbox").eq(index).removeClass("hide");
+		})
+	})
+</script>
+</html>
