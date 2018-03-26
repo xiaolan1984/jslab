@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>submit buttons to links</title>
+  <style type="text/css">
+    form{margin:50px;}
+  </style>
+</head>
+
+<body>
+  <form action="nogo.php" method="post">
+    <label for="Name">Name:</label>
+    <input type="text" id="Name" name="Name">
+    <input type="submit" value="send">
+  </form>
+  <script type="text/javascript">
+    function addLoadEvent(func){
+      var oldonload=window.onload;
+      if(typeof window.onload !='function'){
+        window.onload=func
+      } else {
+        window.onload=function(){
+          oldonload();
+          func();
+        }
+      }
+    }
+    function submitToLinks(){
+      if(!document.getElementById || !document.createTextNode){
+        return false;
+      }
+      var inputs,i,newLink,newText;
+      inputs=document.getElementsByTagName('input');
+      for(i=0;i<inputs.length;i++){
+        if(inputs[i].getAttribute('type').toLowerCase()!='submit'){
+          continue;
+          i++;
+        }
+        newLink=document.createElement('a');
+        newText=document.createTextNode(inputs[i].getAttribute('value'));
+        newLink.appendChild(newText);
+        newLink.setAttribute('href','javascript:document.forms[0].submit()');
+        inputs[i].parentNode.replaceChild(newLink,inputs[i]);
+        // 替换之后inputs的长度改变了
+        if(i<inputs.length){
+          i--;
+        }
+      }
+    }
+    addLoadEvent(submitToLinks);
+  </script>
+</body>
+
+</html>

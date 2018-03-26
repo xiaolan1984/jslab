@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>demo 1:accessing the style collection</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style type="text/css">
+	*{padding: 0;margin: 0}
+	body{font-family: Arial,Sans-Serif;font-size: small;padding: 2em;}
+	address{background: #ddd;border:1px solid #999;border-top: none;font-style: normal;padding: 0.5em;width: 15em;}
+	h3{border:1px solid #000;color: #fff;background: #369;padding: 0.2em 0.5em;width: 15em;font-size: 1em;}
+
+	body.dynamic address{background: #fff;border:none;border-top: 1px solid #ccc;}
+	body.dynamic h3{padding-bottom: 0.5em;background: #fff;border:none;}
+	body.dynamic h3 a{color: #369;}
+
+	.hide{display: none;}
+</style>
+</head>
+<body>
+	<h3>Contact Details</h3>
+	<address>
+		Awesome Web Production Company <br>
+		Going Nowhere Lane O<br>
+		Catch 22<br>
+		N4 2xx<br>
+		England
+	</address> 
+	<script type="text/javascript" src="DOMhelp.js"></script>
+	<script type="text/javascript">
+		sc={
+			hidingClass:'hide',
+			init:function(){
+				sc.head=document.getElementsByTagName('h3')[0];
+				// console.log(sc.head);
+				if (!sc.head) {return;}
+				sc.ad=DOMhelp.closestSibling(sc.head,1);
+				// console.log(sc.ad)
+				// sc.ad.style.display='none';
+				DOMhelp.cssjs('add',sc.ad,sc.hidingClass);
+				var t=DOMhelp.getText(sc.head);
+				var collapseLink=DOMhelp.createLink('#',t);
+				sc.head.replaceChild(collapseLink,sc.head.firstChild);
+				DOMhelp.addEvent(collapseLink,'click',sc.peekaboo,false);
+				collapseLink.onclick=function(){return;}
+			},
+			peekaboo:function(e){
+				// sc.ad.style.display=sc.ad.style.display=='none'?'':'none';
+				if(DOMhelp.cssjs('check',sc.ad,sc.hidingClass)){
+					DOMhelp.cssjs('remove',sc.ad,sc.hidingClass)
+				} else {
+					DOMhelp.cssjs('add',sc.ad,sc.hidingClass)
+
+				}
+				DOMhelp.cancelClick(e);
+			}
+		}
+		DOMhelp.addEvent(window,'load',sc.init,false)
+	
+	</script>
+    
+
+</body>
+</html>

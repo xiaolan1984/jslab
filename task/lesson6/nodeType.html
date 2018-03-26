@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>nodeType在DOM编程中为啥重要</title>
+</head>
+
+<body>
+  <p>nodeType在DOM编程中为啥重要？用不同的浏览器打开这个页面</p>
+  <ul id="List">
+    <li>List 1</li>
+    <li>List 2</li>
+    <li><a href="#">Linked list item</a></li>
+    <li>List 4</li>
+  </ul>
+  <script type="text/javascript">
+    function dominspector(){
+      var demolist=document.getElementById('List');
+      var domstring='';
+      if(!demolist){
+        return false;
+      }
+      if(demolist.hasChildNodes()){
+        var ch=demolist.childNodes;
+        console.log('节点数量：'+ch.length);
+        for(var i=0;i<ch.length;i++){
+          domstring+='nodeName:'+ch[i].nodeName+',nodeType:'+ch[i].nodeType+'\n'
+        }
+        alert(domstring);
+      }
+    }
+    window.onload=dominspector;
+  </script>
+</body>
+
+</html>

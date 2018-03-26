@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Explaining the Document Object Model</title>
+  <style type="text/css">
+    #slideshow {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    #preview {
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Web Design</h1>
+  <p>These are the things you should know.</p>
+  <ol id="linklist">
+    <li>
+      <a href="structure.html">Structure</a>
+    </li>
+    <li>
+      <a href="presentation.html">Presentation</a>
+    </li>
+    <li>
+      <a href="behavior.html">Behavior</a>
+    </li>
+  </ol>
+  <div id="slideshow">
+    <img src="images/topics.gif" id="preview">
+  </div>
+  <script type="text/javascript">
+    // 页面加载完成的时候执行某个函数    
+    function addLoadEvent(func){
+      var oldonload=window.onload;
+      if(typeof window.onload !='function'){
+        window.onload=func;
+      } else {
+        window.onload=function(){
+          oldonload();
+          func()
+        }
+      }
+    }
+    // 移动元素
+    function moveElement(elementID,final_x,final_y,interval){
+      if(!document.getElementById || !document.getElementById(elementID)){
+        return false;
+      }
+      // 获取元素并检查元素的初始位置
+      var elem=document.getElementById(elementID);
+      if(!elem.style.left){
+        elem.style.left='0px'
+      }
+      if(!elem.style.top){
+        elem.style.top='0px'
+      }
+      // 获取元素的初始位置
+      var xpos=parseInt(elem.style.left);
+      var ypos=parseInt(elem.style.top);
+      var dist=0;
+      // 判断是否移动到终点
+      if(xpos == final_x && ypos == final_y){
+        return true;
+      }
+      // 每次移动的距离
+      if(xpos<final_x){
+        dist=Math.ceil((final_x-xpos)/10);
+        xpos=xpos+dist;
+      }
+      if(xpos>final_x){
+        dist=Math.ceil((xpos-final_x)/10);
+        xpos=xpos-dist;
+      }
+      if(ypos<final_y){
+        dist=Math.ceil((final_y-ypos)/10);
+        ypos=ypos+dist;
+      }
+      if(ypos>final_y){
+        dist=Math.ceil((ypos-final_y)/10);
+        ypos=ypos-dist;
+      }
+      // 设置每次移动到的新位置
+      elem.style.left=xpos+'px';
+      elem.style.top=ypos+'px';
+      // 间隔某个时间重复移动
+      var repeat="moveElement('"+elementID+"',"+final_x+","+final_y+","+interval+")";
+      movement=setTimeout(repeat,interval);
+    }
+
+    function prepareSlideShow(){
+      // 确保浏览器支持DOM方法
+      if(!document.getElementsByTagName || !document.getElementById){
+        return false;
+      }
+      // 确保所需元素一定存在
+      if(!document.getElementById('linklist') || !document.getElementById('preview')){
+        return false;
+      }
+
+      // 获取图片并设置初始位置
+      var preview=document.getElementById('preview');
+      preview.style.left='0px';
+      preview.style.top='0px';
+
+      // 获取链接
+      var list=document.getElementById('linklist');
+      var links=list.getElementsByTagName('a');
+
+      // 给每个链接添加点击事件，并调用moveElement函数移动元素到对应的位置
+      // for(var i=0,j=links.length;i<j;i++){
+      //   links[i].index=i;
+      //   links[i].onclick=function(){
+      //     console.log("此时i："+i);
+      //     console.log("this.index:"+this.index);
+      //     var xdist=(this.index+1)*-100;
+      //     moveElement("preview",xdist,0,10);
+      //     return false;
+      //   }
+      // }
+      for(var i=0,j=links.length;i<j;i++){
+        (function(index){
+          links[index].onclick=function(){
+            console.log('index:'+index);
+            var xpos=(index+1)*-100;
+            moveElement("preview",xpos,0,10);
+            return false;
+          }
+        })(i);
+      }
+    }
+    
+    addLoadEvent(prepareSlideShow);
+
+  </script>
+</body>
+
+</html>
